@@ -26,6 +26,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
+
+const toServer = axios.create({
+  timeout: 20000,
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://audacitus.com/htmlgenerator' : '',
+});
 
 @Component({
   components: {
@@ -48,6 +54,11 @@ export default class App extends Vue {
       password : this.password
     }
     console.log('details:', userDetails);
+    toServer.post('/login', userDetails).then((rsp)=>{
+      console.log('response: ', rsp.data)
+    }).catch((err: AxiosError)=>{
+      console.error('Error: ', err.message);
+    })
   }
 }
 </script>

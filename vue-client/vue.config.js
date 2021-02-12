@@ -10,6 +10,17 @@ set publicPath to '/my-app/'
 
 module.exports = {
     outputDir: path.resolve(__dirname, '../dist/public'),
-    publicPath: '/'
+    publicPath: '/',
+    devServer : {
+        proxy : {
+            "^/login" : {
+                target : "http://localhost:3001/login",
+                logLevel : 'debug',
+                changeOrigin : true,
+                secure: false,
+                pathRewrite: { "^/login": "" }
+            }
+        }
+    }
 
 };
