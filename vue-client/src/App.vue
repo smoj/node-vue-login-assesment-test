@@ -8,13 +8,13 @@
             <div class="field">
               <label class="label">Username</label>
               <div class="control mb-3">
-                <input class="input" type="text" placeholder="Text input">
+                <input v-model="username" class="input" type="text" placeholder="Text input">
               </div>
               <label class="label">Password</label>
               <div class="control mb-3">
-                <input class="input" type="password" placeholder="Text input">
+                <input v-model="password" class="input" type="password" placeholder="Text input">
               </div>
-              <button class="button">Button</button>
+              <button @click="loginFxn()" class="button">Login</button>
             </div>
           </div>
         </div>
@@ -32,7 +32,24 @@ import HelloWorld from './components/HelloWorld.vue';
     HelloWorld,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public username: string;
+  public password: string;
+
+  constructor() {
+    super();
+    this.username = '';
+    this.password = '';
+  }
+
+  loginFxn(){
+    const userDetails = {
+      username : this.username,
+      password : this.password
+    }
+    console.log('details:', userDetails);
+  }
+}
 </script>
 
 <style lang="scss" src="../assets/styles.scss"></style>
