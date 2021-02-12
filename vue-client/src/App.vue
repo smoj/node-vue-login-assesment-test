@@ -1,7 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4 is-offset-4">
+          <div class="notification is-info is-light">
+            <!-- <button class="delete"></button> -->
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control mb-3">
+                <input class="input" type="text" placeholder="Text input">
+              </div>
+              <label class="label">Password</label>
+              <div class="control mb-3">
+                <input class="input" type="password" placeholder="Text input">
+              </div>
+              <button class="button">Button</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +34,8 @@ import HelloWorld from './components/HelloWorld.vue';
 })
 export default class App extends Vue {}
 </script>
+
+<style lang="scss" src="../assets/styles.scss"></style>
 
 <style>
 #app {

@@ -15,6 +15,23 @@ const app = express()
 const bodyParser = bp.json();
 const router = express.Router();
 
+interface UserLogin {
+    username : string,
+    password : string
+}
+
+interface JwtToken {
+    access_token : string,
+    expires: number,
+    refresh_token : string
+}
+
+interface ErrorJson {
+    error : boolean,
+    code : number,
+    message : string
+}
+
 
 // Here we are configuring express to use body-parser as middle-ware.
 app.use(bp.urlencoded({ extended: false }));
@@ -55,6 +72,31 @@ app.use(express.static(__dirname + '/public/'));
 // handle SPA
 app.get(/.*/, (req, res)=>{res.sendFile(__dirname + '/public/index.html')});
 
+router.post('/login', (req, res) => {
+    const userDetails : UserLogin = req.body;
+    if(userDetails && userDetails.password && userDetails.username){
+        if(userDetails.username === 'john' && userDetails.password === 'baton'){
+            const token : JwtToken = {
+                access_token: '349939393',
+                expires: 90000,
+                refresh_token : '299feefefef'
+            }
+            res.status(200)
+            res.send(token);
+        }
+        else{
+            const error : ErrorJson = {
+                error: true,
+                code: 400,
+                message : 'invalid login'
+            }
+            res.status(400)
+            res.send(error);
+        }
+    }
+    const jsonBody = {status: 'Logged In!'};
+    res.send(jsonBody);
+})
 
 app.listen(3001, () => {
     console.log(`HTTP Server listen at port 3001`);
