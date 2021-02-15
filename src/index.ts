@@ -74,12 +74,13 @@ app.get(/.*/, (req, res)=>{res.sendFile(__dirname + '/public/index.html')});
 
 router.post('/login', (req, res) => {
     const userDetails : UserLogin = req.body;
+    console.log('provided user details: ', userDetails);
     if(userDetails && userDetails.password && userDetails.username){
-        if(userDetails.username === 'john' && userDetails.password === 'baton'){
+        if(userDetails.username === 'jane@doe.com' && userDetails.password === 'jane'){
             const token : JwtToken = {
-                access_token: '349939393',
+                access_token: 'YNTgKtgQPoIU_FbfWGC-y_03KDZakUJ8ajYYlijy-fehuhfehfuheufueffefeff',
                 expires: 90000,
-                refresh_token : '299feefefef'
+                refresh_token : 'YNTgKtgQPoIU_FbfWGC-y_03KDZakUJ8ajYYlijy-vu6huyrY2KLtDPMqHMdkxuV'
             }
             res.status(200)
             res.send(token);
@@ -87,15 +88,22 @@ router.post('/login', (req, res) => {
         else{
             const error : ErrorJson = {
                 error: true,
-                code: 400,
+                code: 401,
                 message : 'invalid login'
             }
-            res.status(400)
+            res.status(401)
             res.send(error);
         }
     }
-    const jsonBody = {status: 'Logged In!'};
-    res.send(jsonBody);
+    else{
+        const error : ErrorJson = {
+            error: true,
+            code: 401,
+            message : 'invalid login'
+        }
+        res.status(401)
+        res.send(error);
+    }
 })
 
 app.listen(3001, () => {

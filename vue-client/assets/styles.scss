@@ -1,12 +1,15 @@
+$card-background-color: #34495e;
+$card-color : white;
 /* Import all of bulma's functionality */
 @import "../node_modules/bulma/bulma.sass";
+
 
 .is-white {
     color: white !important;
 }
 .app-content {
-    background: linear-gradient(71.99deg, #485563 0%, #1A1F25 100%);
-    border-radius: 10px;
-  }
+  background: linear-gradient(71.99deg, #485563 0%, #1A1F25 100%);
+  border-radius: 10px;
+}
 .text-white, .text-white:hover {color: white}
 a.text-white:hover {text-decoration: underline;}
