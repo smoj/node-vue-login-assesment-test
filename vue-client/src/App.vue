@@ -93,7 +93,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 
 const toServer = axios.create({
   timeout: 20000,
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://audacitus.com/htmlgenerator' : '',
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://audacitus.com/node-vue' : '',
 });
 
 @Component({
@@ -120,12 +120,12 @@ export default class App extends Vue {
   }
 
   public checkEmail(){
-    console.log(`changed: ${this.username}`);
+    // console.log(`changed: ${this.username}`);
     const pattern = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     const isValidEmail : boolean = pattern.test(this.username);
     this.errorMessage = (isValidEmail) ? false : true;
-    console.log(`test for ${this.username} as email is ${isValidEmail}. lenght is ${this.username.length}`);
-    console.log(`ErrorMessage: ${this.errorMessage}`);
+    // console.log(`test for ${this.username} as email is ${isValidEmail}. lenght is ${this.username.length}`);
+    // console.log(`ErrorMessage: ${this.errorMessage}`);
   }
 
   logoutFxn(){
@@ -139,9 +139,9 @@ export default class App extends Vue {
         username : this.username,
         password : this.password
       }
-      console.log('details:', userDetails);
+      // console.log('details:', userDetails);
       toServer.post('/login', userDetails).then((rsp)=>{
-        console.log('response: ', rsp.data)
+        // console.log('response: ', rsp.data)
         this.loggedIn = true;
       }).catch((err: AxiosError)=>{
         console.error('Error: ', err.message);
@@ -151,7 +151,7 @@ export default class App extends Vue {
       })
     }
     else{
-      console.log('loginFxn triggered but not valid')
+      // console.log('loginFxn triggered but not valid')
     }
   }
 }

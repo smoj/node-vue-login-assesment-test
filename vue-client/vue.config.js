@@ -10,7 +10,7 @@ set publicPath to '/my-app/'
 
 module.exports = {
     outputDir: path.resolve(__dirname, '../dist/public'),
-    publicPath: '/',
+    publicPath: '/node-vue/',
     devServer : {
         proxy : {
             "^/login" : {

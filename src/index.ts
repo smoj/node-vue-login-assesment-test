@@ -56,10 +56,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => {
-const jsonBody = {status: 'Ok!'};
-  res.send(jsonBody);
-})
+// app.get('/', (req, res) => {
+// const jsonBody = {status: 'Ok!'};
+//   res.send(jsonBody);
+// })
 
 // add router in the Express app.
 app.use("/", router);
