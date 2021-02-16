@@ -3,13 +3,13 @@
     <div class="container app-section">
       <div class="columns">
         <div class="column is-8 is-offset-2 is-8-mobile is-offset-2-mobile">
-          <div class="login-box my-4">
+          <div class="login-box animate__animated animate__fadeIn my-4">
             <div class="columns is-gapless">
-              <div class="column is-7 pos-relative" v-bind:class="{'brand-image': !loggedIn, 'brand-dashboard': loggedIn}">
+              <div class="column is-7 pos-relative" v-bind:class="{'brand-image': !loggedIn, 'brand-dashboard': loggedIn, 'animate__animated' : loggedIn, 'animate__fadeIn' : loggedIn}">
                 <div class="brand-gradient"></div>
                 <template v-if="loggedIn">
                   <div class="columns is-multiline m-0 p-5">
-                  <div class="column is-half-mobile is-half-desktop">
+                  <div class="column is-full-mobile is-half-desktop">
                     <div class="card">
                       <div class="card-content">
                         <div class="content has-text-left">
@@ -19,7 +19,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="column is-half-mobile">
+                  <div class="column is-full-mobile">
                     <div class="card">
                       <div class="card-content">
                         <div class="content has-text-left">
@@ -29,7 +29,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="column is-half-mobile">
+                  <div class="column is-full-mobile">
                     <div class="card">
                       <div class="card-content">
                         <div class="content has-text-left">
@@ -176,6 +176,13 @@ export default class App extends Vue {
 @import "https://fonts.googleapis.com/css?family=Poppins&display=swap";
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 </style>
+
+<style scoped>
+.animate__animated.animate__fadeIn {
+  --animate-duration: 0.5s;
+}
+</style>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
