@@ -43,7 +43,7 @@
                 </template>
                 <div v-if="!loggedIn" class="taglines has-text-left p-4 mx-4 has-text-white font-montserrat">
                   <h1 class="is-size-4 has-text-weight-bold line-height mb-3">Around the world in 30 minutes</h1>
-                  <p class="is-size-7 my-1">Varela Point is the newest fintech app that doesn’t exist yet</p>
+                  <p class="is-size-7 my-1">Varela Point is the newest fintech app that aims to solve financial problems</p>
                 </div>
                 <!-- <img class="remove-image-bottom-gap" src="../assets/brand-image.jpg" alt=""> -->
               </div>
@@ -74,7 +74,14 @@
                     <div class="control mb-3">
                       <input v-model="password" @keypress.enter="loginFxn()" class="input" type="password" placeholder="Password">
                     </div>
-                    <button :disabled="!processing && errorMessage" v-bind:class="{'is-loading': processing}" @click="loginFxn()" class="button is-link is-fullwidth has-text-weight-medium font-montserrat my-5">Login</button>
+                    <button :disabled="!processing && errorMessage" v-bind:class="{'is-loading': processing, 'is-danger': failed}" @click="loginFxn()" class="button is-link is-fullwidth has-text-weight-medium font-montserrat my-5">
+                      <template v-if="!failed">
+                        Login
+                      </template>
+                      <template v-if="failed">
+                        Invalid Login
+                      </template>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -118,6 +125,10 @@ export default class App extends Vue {
     this.loggedIn = false;
     this.failed = false;
   }
+  
+  mounted(){
+    document.title = 'VarelaPoint';
+  }
 
   public checkEmail(){
     // console.log(`changed: ${this.username}`);
@@ -146,6 +157,8 @@ export default class App extends Vue {
       }).catch((err: AxiosError)=>{
         console.error('Error: ', err.message);
         this.loggedIn = false;
+        this.failed = true;
+        setTimeout(()=>{this.failed = false}, 3000);
       }).finally(()=>{
         this.processing = false;
       })
